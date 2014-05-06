@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<schema name="Latin Analysis" version="1.5">
+  <!-- attribute "name" is the name of this schema and is only used for display purposes.
+       version="x.y" is Solr's version number for the schema syntax and 
+       semantics.  It should not normally be changed by applications.
+
+       1.0: multiValued attribute did not exist, all fields are multiValued 
+            by nature
+       1.1: multiValued attribute introduced, false by default 
+       1.2: omitTermFreqAndPositions attribute introduced, true by default 
+            except for text fields.
+       1.3: removed optional field compress feature
+       1.4: autoGeneratePhraseQueries attribute introduced to drive QueryParser
+            behavior when a single string produces multiple tokens.  Defaults 
+            to off for version >= 1.4
+       1.5: omitNorms defaults to true for primitive field types 
+            (int, float, boolean, string...)
+     -->
+
+ <fields>
+  
+	<!-- If you remove this field, you must _also_ disable the update log in solrconfig.xml
+      or Solr won't start. _version_ and update log are required for SolrCloud
+	--> 
+	<field name="_version_" type="long" indexed="true" stored="true"/>
+   
+	<!-- points to the root document of a block of nested documents. Required for nested
+		document support, may be removed otherwise
+	-->
+	<field name="_root_" type="string" indexed="true" stored="false"/>
+
+	<!-- id  -->
+	<field name="id" type="string" indexed="true" stored="true" required="true" multiValued="false" /> 
+	
+	<!-- latin fields  -->   
+	<field name="latinText" type="text_la" indexed="true" stored="true"/> 
+	<field name="latinNumber" type="text_la_number" indexed="true" stored="true"/> 
+ </fields>
+
+ <uniqueKey>id</uniqueKey>
+
+  <types>
+    <fieldType name="string" class="solr.StrField" sortMissingLast="true" />
+	<fieldType name="long" class="solr.TrieLongField" precisionStep="0" positionIncrementGap="0" /> 
+
+    <fieldType name="text_la" class="solr.TextField" positionIncrementGap="100">
+      <analyzer> 
+		<tokenizer class="solr.StandardTokenizerFactory"/>
+		 <filter class="org.apache.lucene.analysis.la.LatinStemFilterFactory"/>
+      </analyzer>
+    </fieldType>
+    
+	<fieldType name="text_la_number" class="solr.TextField" positionIncrementGap="100">
+      <analyzer> 
+        <tokenizer class="solr.StandardTokenizerFactory"/>
+		<filter class="org.apache.lucene.analysis.la.LatinNumberNormalizationFilterFactory"/>
+		<filter class="org.apache.lucene.analysis.la.LatinNumberConvertFilterFactory" strictMode="true"/>
+      </analyzer>
+    </fieldType>    
+
+ </types>
+  
+</schema>
