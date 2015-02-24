@@ -17,7 +17,6 @@ package org.apache.lucene.analysis.la;
  * limitations under the License.
  */
 
-import java.io.Reader;
 import java.io.StringReader;
 import java.util.HashMap;
 
@@ -32,9 +31,10 @@ import org.apache.lucene.analysis.la.LatinStemFilterFactory;
 public class TestLatinStemFilterFactory extends BaseTokenStreamTestCase {
  
 	public void testLatinStemFilterFactory() throws Exception {
-	  Reader reader = new StringReader("adultero filius filivs FILIVS filii atque");
-	  LatinStemFilterFactory factory = new LatinStemFilterFactory(new HashMap<String, String>());
-	  TokenStream stream = factory.create(new MockTokenizer(reader, MockTokenizer.WHITESPACE, false));
-	  assertTokenStreamContents(stream, new String[] {"adulter", "adulteri", "fil", "filiu", "fil", "filiu", "FIL", "FILIU", "fili", "filii", "atque", "atque"});
+		MockTokenizer mockTokenizer = new MockTokenizer(MockTokenizer.WHITESPACE, false);
+		mockTokenizer.setReader(new StringReader("adultero filius filivs FILIVS filii atque"));
+		LatinStemFilterFactory factory = new LatinStemFilterFactory(new HashMap<String, String>());
+		TokenStream stream = factory.create(mockTokenizer);
+		assertTokenStreamContents(stream, new String[] {"adulter", "adulteri", "fil", "filiu", "fil", "filiu", "FIL", "FILIU", "fili", "filii", "atque", "atque"});
 	}
 }

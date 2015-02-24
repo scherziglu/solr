@@ -22,7 +22,6 @@ import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
-import java.io.Reader;
 import java.util.zip.ZipFile;
 
 import org.apache.lucene.analysis.Analyzer;
@@ -37,20 +36,20 @@ import org.apache.lucene.analysis.la.LatinStemFilter;
 public class TestLatinStemFilter extends BaseTokenStreamTestCase {
 	private Analyzer analyzer = new Analyzer() {
 		@Override
-		protected TokenStreamComponents createComponents(String fieldName, Reader reader) {
-			Tokenizer source = new MockTokenizer(reader, MockTokenizer.WHITESPACE, false);
+		protected TokenStreamComponents createComponents(String fieldName) {
+			Tokenizer source = new MockTokenizer(MockTokenizer.WHITESPACE, false);
 			return new TokenStreamComponents(source, new LatinStemFilter(source));
 		}
 	};
   
 	/** Test against a sample vocabulary from the reference impl */
 	public void testSampleVocabulary() throws IOException {
-		assertLatinVocabulary(analyzer, getDataFile("latinTestData.zip"), "latinTestData.txt");
+		assertLatinVocabulary(analyzer, super.getDataPath("latinTestData.zip").toFile(), "latinTestData.txt");
 	}
   
 	/** Test against a complete vocabulary from the reference impl */
 	public void testCompleteVocabulary() throws IOException {
-		assertLatinVocabulary(analyzer, getDataFile("latinTestData.zip"), "latinTestData_complete.txt");
+		assertLatinVocabulary(analyzer, super.getDataPath("latinTestData.zip").toFile(), "latinTestData_complete.txt");
 	}
   
 	// helper methods (adapted from VocabularyAssert, BaseTokenStreamTestCase)

@@ -18,7 +18,6 @@ package org.apache.lucene.analysis.la;
  */
 
 import java.io.IOException;
-import java.io.Reader;
 
 import org.apache.lucene.analysis.Analyzer;
 import org.apache.lucene.analysis.BaseTokenStreamTestCase;
@@ -35,27 +34,27 @@ import static org.apache.lucene.analysis.VocabularyAssert.*;
 public class TestLatinNumberConvertFilter extends BaseTokenStreamTestCase {
 	private Analyzer analyzerStrictTrue = new Analyzer() {
 		@Override
-	    protected TokenStreamComponents createComponents(String fieldName, Reader reader) {
-			Tokenizer source = new MockTokenizer(reader, MockTokenizer.WHITESPACE, false);
+	    protected TokenStreamComponents createComponents(String fieldName) {
+			Tokenizer source = new MockTokenizer(MockTokenizer.WHITESPACE, false);
 			return new TokenStreamComponents(source, new LatinNumberConvertFilter(source, true));
 	    }
 	};
 	
 	private Analyzer analyzerStrictFalse = new Analyzer() {
 		@Override
-	    protected TokenStreamComponents createComponents(String fieldName, Reader reader) {
-			Tokenizer source = new MockTokenizer(reader, MockTokenizer.WHITESPACE, false);
+	    protected TokenStreamComponents createComponents(String fieldName) {
+			Tokenizer source = new MockTokenizer(MockTokenizer.WHITESPACE, false);
 			return new TokenStreamComponents(source, new LatinNumberConvertFilter(source, false));
 	    }
 	};
   
 	/** Test against a vocabulary from the reference impl - strictMode="false" */
 	public void testVocabularyStrictTrue() throws IOException {
-		assertVocabulary(analyzerStrictTrue, getDataFile("latinNumberTestData.zip"), "latinNumberTestDataStrictTrue.txt");
+		assertVocabulary(analyzerStrictTrue, super.getDataPath("latinNumberTestData.zip"), "latinNumberTestDataStrictTrue.txt");
 	}
 	
 	/** Test against a vocabulary from the reference impl - strictMode="false" */
 	public void testVocabularyStrictFalse() throws IOException {
-		assertVocabulary(analyzerStrictFalse, getDataFile("latinNumberTestData.zip"), "latinNumberTestDataStrictFalse.txt");
+		assertVocabulary(analyzerStrictFalse, super.getDataPath("latinNumberTestData.zip"), "latinNumberTestDataStrictFalse.txt");
 	}
 }

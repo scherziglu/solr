@@ -18,7 +18,6 @@ package org.apache.lucene.analysis.la;
  */
 
 import java.io.IOException;
-import java.io.Reader;
 
 import org.apache.lucene.analysis.Analyzer;
 import org.apache.lucene.analysis.BaseTokenStreamTestCase;
@@ -29,8 +28,8 @@ public class TestLatinNumberNormalizationFilter extends BaseTokenStreamTestCase 
 
 	private Analyzer analyzer = new Analyzer() {
 		@Override
-	    protected TokenStreamComponents createComponents(String fieldName, Reader reader) {
-			Tokenizer source = new MockTokenizer(reader, MockTokenizer.WHITESPACE, false);
+	    protected TokenStreamComponents createComponents(String fieldName) {
+			Tokenizer source = new MockTokenizer(MockTokenizer.WHITESPACE, false);
 			return new TokenStreamComponents(source, new LatinNumberNormalizationFilter(source));
 	    }
 	};
