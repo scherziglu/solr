@@ -1,3 +1,0 @@
-TokenFilter
-	- LatinNumberConverter
-	- LatinStemXXXX

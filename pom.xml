@@ -1,11 +1,10 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
-  <groupId>solr</groupId>
-  <artifactId>solr</artifactId>
+  <groupId>rosa</groupId>
+  <artifactId>lucene-latin-stemmer</artifactId>
   <version>1.0.0</version>
-  <name>development of solr components</name>
-  <description>development of solr components</description>
-  <packaging>pom</packaging>
+  <name>Lucene Latin Stemmer</name>
+  <packaging>jar</packaging>
   
   <developers>
     <developer>
@@ -17,14 +16,30 @@
   </developers>
   
   <properties>
-    <jdk.version>1.7</jdk.version>
-	<junit.version>4.11</junit.version>
-    <solr.version>5.0.0</solr.version>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <junit.version>4.11</junit.version>
+    <lucene.version>5.2.1</lucene.version>
   </properties>
-  
-  <modules>
-    <module>solr-analysis</module>
-	<!--<module>solr-update-processor</module>-->
-	<!--<module>solr-query-parser</module>-->
-  </modules>
+
+ <dependencies>
+    <dependency>
+      <groupId>org.apache.lucene</groupId>
+      <artifactId>lucene-core</artifactId>
+      <version>${lucene.version}</version>
+    </dependency>
+    
+    <dependency>
+      <groupId>org.apache.lucene</groupId>
+      <artifactId>lucene-analyzers-common</artifactId>
+      <version>${lucene.version}</version>
+    </dependency>
+    
+    <dependency>
+      <groupId>junit</groupId>
+      <artifactId>junit</artifactId>
+      <version>${junit.version}</version>
+      <scope>test</scope>
+    </dependency>
+  </dependencies>
+
 </project>
