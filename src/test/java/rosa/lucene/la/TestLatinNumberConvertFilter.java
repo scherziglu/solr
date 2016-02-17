@@ -50,11 +50,11 @@ public class TestLatinNumberConvertFilter extends BaseTokenStreamTestCase {
   
 	/** Test against a vocabulary from the reference impl - strictMode="false" */
 	public void testVocabularyStrictTrue() throws IOException {
-		assertVocabulary(analyzerStrictTrue, getDataPath("latinNumberTestData.zip"), "latinNumberTestDataStrictTrue.txt");
+		assertVocabulary(analyzerStrictTrue, getDataPath("/latinNumberTestData.zip"), "latinNumberTestDataStrictTrue.txt");
 	}
 	
 	/** Test against a vocabulary from the reference impl - strictMode="false" */
 	public void testVocabularyStrictFalse() throws IOException {
-		assertVocabulary(analyzerStrictFalse, getDataPath("latinNumberTestData.zip"), "latinNumberTestDataStrictFalse.txt");
+		assertVocabulary(analyzerStrictFalse, getDataPath("/latinNumberTestData.zip"), "latinNumberTestDataStrictFalse.txt");
 	}
 }

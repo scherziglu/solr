@@ -45,12 +45,12 @@ public class TestLatinStemFilter extends BaseTokenStreamTestCase {
   
 	/** Test against a sample vocabulary from the reference impl */
 	public void testSampleVocabulary() throws IOException {
-		assertLatinVocabulary(analyzer, getDataPath("latinTestData.zip").toFile(), "latinTestData.txt");
+		assertLatinVocabulary(analyzer, getDataPath("/latinTestData.zip").toFile(), "latinTestData.txt");
 	}
   
 	/** Test against a complete vocabulary from the reference impl */
 	public void testCompleteVocabulary() throws IOException {
-		assertLatinVocabulary(analyzer, getDataPath("latinTestData.zip").toFile(), "latinTestData_complete.txt");
+		assertLatinVocabulary(analyzer, getDataPath("/latinTestData.zip").toFile(), "latinTestData_complete.txt");
 	}
   
 	// helper methods (adapted from VocabularyAssert, BaseTokenStreamTestCase)
