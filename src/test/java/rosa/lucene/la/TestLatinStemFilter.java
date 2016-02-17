@@ -1,4 +1,4 @@
-package org.apache.lucene.analysis.la;
+package rosa.lucene.la;
 
 /*
  * Licensed to the Apache Software Foundation (ASF) under one or more
@@ -28,7 +28,8 @@ import org.apache.lucene.analysis.Analyzer;
 import org.apache.lucene.analysis.BaseTokenStreamTestCase;
 import org.apache.lucene.analysis.MockTokenizer;
 import org.apache.lucene.analysis.Tokenizer;
-import org.apache.lucene.analysis.la.LatinStemFilter;
+
+import rosa.lucene.la.LatinStemFilter;
 
 /**
  * Simple tests for {@link LatinStemFilter}
@@ -44,12 +45,12 @@ public class TestLatinStemFilter extends BaseTokenStreamTestCase {
   
 	/** Test against a sample vocabulary from the reference impl */
 	public void testSampleVocabulary() throws IOException {
-		assertLatinVocabulary(analyzer, super.getDataPath("latinTestData.zip").toFile(), "latinTestData.txt");
+		assertLatinVocabulary(analyzer, getDataPath("latinTestData.zip").toFile(), "latinTestData.txt");
 	}
   
 	/** Test against a complete vocabulary from the reference impl */
 	public void testCompleteVocabulary() throws IOException {
-		assertLatinVocabulary(analyzer, super.getDataPath("latinTestData.zip").toFile(), "latinTestData_complete.txt");
+		assertLatinVocabulary(analyzer, getDataPath("latinTestData.zip").toFile(), "latinTestData_complete.txt");
 	}
   
 	// helper methods (adapted from VocabularyAssert, BaseTokenStreamTestCase)

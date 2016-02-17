@@ -1,9 +1,4 @@
-package org.apache.lucene.analysis.la;
-
-import java.util.Map;
-
-import org.apache.lucene.analysis.TokenStream;
-import org.apache.lucene.analysis.util.TokenFilterFactory;
+package rosa.lucene.la;
 
 /*
  * Licensed to the Apache Software Foundation (ASF) under one or more
@@ -22,31 +17,39 @@ import org.apache.lucene.analysis.util.TokenFilterFactory;
  * limitations under the License.
  */
 
+import java.util.Map;
+
+import org.apache.lucene.analysis.TokenStream;
+import org.apache.lucene.analysis.util.TokenFilterFactory;
+
 /**
- * Factory for  {@link LatinNumberNormalizationFilter}.
+ * Factory for  {@link LatinNumberConvertFilter}.
  * <pre class="prettyprint" >
  * &lt;fieldType name="text_latin" class="solr.TextField" positionIncrementGap="100"&gt;
  *   &lt;analyzer&gt;
  *     &lt;tokenizer class="solr.StandardTokenizerFactory"/&gt;
- *     &lt;filter class="solr.LatinNumberNormalizationFilterFactory"/&gt;
  *     &lt;filter class="solr.LatinNumberConvertFilterFactory" strictMode="true"/&gt;
  *   &lt;/analyzer&gt;
  * &lt;/fieldType&gt;</pre> 
  *
  */
-public class LatinNumberNormalizationFilterFactory extends TokenFilterFactory {
-
+public class LatinNumberConvertFilterFactory extends TokenFilterFactory {
+	
+	/** flag thats indicates the computation mode */
+	private boolean strictMode = false;
+	
 	/**
 	 * default constructor.
 	 * @param args
 	 * 	arguments from schema.xml
 	 */
-	public LatinNumberNormalizationFilterFactory(Map<String,String> args) {
+	public LatinNumberConvertFilterFactory(Map<String,String> args) {
 		super(args);
+		this.strictMode = getBoolean(args, "strictMode", false);
 	}
 	  
 	@Override
 	public TokenStream create(TokenStream input) {
-		return new LatinNumberNormalizationFilter(input);
+		return new LatinNumberConvertFilter(input, this.strictMode);
 	}  
 }

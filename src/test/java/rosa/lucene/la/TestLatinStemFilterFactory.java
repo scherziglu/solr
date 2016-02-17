@@ -1,4 +1,4 @@
-package org.apache.lucene.analysis.la;
+package rosa.lucene.la;
 
 /*
  * Licensed to the Apache Software Foundation (ASF) under one or more
@@ -23,7 +23,8 @@ import java.util.HashMap;
 import org.apache.lucene.analysis.BaseTokenStreamTestCase;
 import org.apache.lucene.analysis.MockTokenizer;
 import org.apache.lucene.analysis.TokenStream;
-import org.apache.lucene.analysis.la.LatinStemFilterFactory;
+
+import rosa.lucene.la.LatinStemFilterFactory;
 
 /**
  * Simple tests to ensure the Latin stem factory is working.

@@ -1,4 +1,4 @@
-package org.apache.lucene.analysis.la;
+package rosa.lucene.la;
 
 
 /*

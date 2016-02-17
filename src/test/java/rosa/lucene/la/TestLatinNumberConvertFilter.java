@@ -1,4 +1,6 @@
-package org.apache.lucene.analysis.la;
+package rosa.lucene.la;
+
+import static org.apache.lucene.analysis.VocabularyAssert.assertVocabulary;
 
 /*
  * Licensed to the Apache Software Foundation (ASF) under one or more
@@ -23,10 +25,8 @@ import org.apache.lucene.analysis.Analyzer;
 import org.apache.lucene.analysis.BaseTokenStreamTestCase;
 import org.apache.lucene.analysis.MockTokenizer;
 import org.apache.lucene.analysis.Tokenizer;
-import org.apache.lucene.analysis.la.LatinNumberConvertFilter;
 
-
-import static org.apache.lucene.analysis.VocabularyAssert.*;
+import rosa.lucene.la.LatinNumberConvertFilter;
 
 /**
  * Simple tests for {@link LatinNumberConvertFilter}
@@ -50,11 +50,11 @@ public class TestLatinNumberConvertFilter extends BaseTokenStreamTestCase {
   
 	/** Test against a vocabulary from the reference impl - strictMode="false" */
 	public void testVocabularyStrictTrue() throws IOException {
-		assertVocabulary(analyzerStrictTrue, super.getDataPath("latinNumberTestData.zip"), "latinNumberTestDataStrictTrue.txt");
+		assertVocabulary(analyzerStrictTrue, getDataPath("latinNumberTestData.zip"), "latinNumberTestDataStrictTrue.txt");
 	}
 	
 	/** Test against a vocabulary from the reference impl - strictMode="false" */
 	public void testVocabularyStrictFalse() throws IOException {
-		assertVocabulary(analyzerStrictFalse, super.getDataPath("latinNumberTestData.zip"), "latinNumberTestDataStrictFalse.txt");
+		assertVocabulary(analyzerStrictFalse, getDataPath("latinNumberTestData.zip"), "latinNumberTestDataStrictFalse.txt");
 	}
 }

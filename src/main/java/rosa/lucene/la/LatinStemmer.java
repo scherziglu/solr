@@ -1,4 +1,4 @@
-package org.apache.lucene.analysis.la;
+package rosa.lucene.la;
 
 /*
  * Licensed to the Apache Software Foundation (ASF) under one or more

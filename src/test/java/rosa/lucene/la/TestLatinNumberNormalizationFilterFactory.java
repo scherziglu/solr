@@ -1,4 +1,4 @@
-package org.apache.lucene.analysis.la;
+package rosa.lucene.la;
 
 /*
  * Licensed to the Apache Software Foundation (ASF) under one or more
@@ -24,6 +24,8 @@ import org.apache.lucene.analysis.BaseTokenStreamTestCase;
 import org.apache.lucene.analysis.MockTokenizer;
 import org.apache.lucene.analysis.TokenStream;
 import org.junit.Before;
+
+import rosa.lucene.la.LatinNumberNormalizationFilterFactory;
 
 public class TestLatinNumberNormalizationFilterFactory extends BaseTokenStreamTestCase {
 
