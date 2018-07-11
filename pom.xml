@@ -2,7 +2,7 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>rosa</groupId>
   <artifactId>lucene-latin-stemmer</artifactId>
-  <version>1.0.0</version>
+  <version>1.1.0</version>
   <name>Lucene Latin Stemmer</name>
   <packaging>jar</packaging>
   
@@ -17,8 +17,8 @@
   
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-    <junit.version>4.11</junit.version>
-    <lucene.version>5.2.1</lucene.version>
+    <junit.version>4.12</junit.version>
+    <lucene.version>7.4.0</lucene.version>
   </properties>
 
  <dependencies>
